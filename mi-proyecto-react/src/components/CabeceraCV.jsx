@@ -1,13 +1,12 @@
-// src/components/CabeceraCV.jsx
 import React from "react";
 
 export default function CabeceraCV() {
   return (
     <header style={{ background: "#007acc", color: "#fff", padding: "20px" }}>
-      <h1>Tu Nombre Completo</h1>
+      <h1>Sebastian Castro Grajales</h1>
       <p>
-        Desarrollador Front-End Jr. | Tel: 300-000-0000 | correo@ejemplo.com |
-        Ciudad
+        Análisis y desarrollo de Software | Tel: 320 972 6582 |
+        sebastiancastro4848@gmail.com | Medellín, Colombia
       </p>
     </header>
   );
