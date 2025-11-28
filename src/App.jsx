@@ -6,7 +6,8 @@ import "./App.css";
 // Importación de tus componentes
 import Perfil from "./components/Perfil";
 import Experiencia from "./components/Experiencia";
-import Educacion from "./components/Educacion"; // ← NUEVO
+import Educacion from "./components/Educacion";
+import StackTecnologias from "./components/StackTecnologias"; // ← NUEVO
 
 function App() {
   const [count, setCount] = useState(0);
@@ -27,7 +28,7 @@ function App() {
           count is {count}
         </button>
         <p>
-          Edita <code>src/App.jsx</code> y guarda para probar HMR
+          Edita <code>src/App.jsx</code> y guarda para probar HMR.
         </p>
       </div>
       <p className="read-the-docs">Haz clic en los logos para aprender más</p>
@@ -36,7 +37,8 @@ function App() {
       {/* -------------------------------------- */}
       <Perfil />
       <Experiencia />
-      <Educacion /> {/* ← NUEVO */}
+      <Educacion />
+      <StackTecnologias /> {/* ← NUEVO */}
       {/* -------------------------------------- */}
     </>
   );
