@@ -1,9 +1,15 @@
 import React from "react";
 
-export default function Perfil() {
+// Recibimos la prop 'resumen'
+export default function Perfil({ resumen }) {
   return (
     <section style={{ padding: "20px" }}>
-      <h2>Perfil EEstudiantil</h2>
+      <h2>Perfil Estudiantil</h2>
+
+      {/* Inserto la prop resumen ANTES de tu contenido original */}
+      <p>{resumen}</p>
+
+      {/* Tu contenido original sigue intacto */}
       <p>
         Soy un desarrollador en formación con interés en la programación,
         construcción de interfaces y comprensión de la lógica detrás del
