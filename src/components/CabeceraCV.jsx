@@ -1,13 +1,17 @@
 import React from "react";
 
-export default function CabeceraCV() {
+export default function CabeceraCV({ nombre, cargo, ciudad, contacto }) {
   return (
-    <header style={{ background: "#007acc", color: "#fff", padding: "20px" }}>
-      <h1>Sebastian Castro Grajales</h1>
-      <p>
-        Análisis y desarrollo de Software | Tel: 320 972 6582 |
-        sebastiancastro4848@gmail.com | Medellín, Colombia
-      </p>
-    </header>
+    <React.Fragment>
+      <header style={{ background: "#007acc", color: "#fff", padding: "20px" }}>
+        {" "}
+        <h1>{nombre || "Sebastian Castro Grajales"}</h1>{" "}
+        <p>
+          {cargo || "Análisis y desarrollo de Software"} |{" "}
+          {contacto || "[sebastiancastro4848@gmail.com)"} |{" "}
+          {ciudad || "Medellín, Colombia"}{" "}
+        </p>{" "}
+      </header>
+    </React.Fragment>
   );
 }
