@@ -47,7 +47,7 @@ http://localhost:5173/
 
 “Actividad: Crear un nuevo componente llamado StackTecnologias en React, importarlo en App.jsx e integrarlo como una sección adicional del CV, mostrando las tecnologías que manejo.”
 
-# Actividad 7 — Actualización
+# Actividad 7
 
 ✔️ Cambios realizados en esta actividad
 
@@ -64,3 +64,5 @@ Se creó el componente Perfil, ahora recibiendo información mediante props.
 Se reorganizó la estructura del componente para cumplir con las instrucciones de la guía.
 
 Se añadieron evidencias y commits siguiendo las convenciones solicitadas.
+
+# Actividad 8
