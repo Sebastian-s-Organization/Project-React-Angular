@@ -8,14 +8,11 @@ import Perfil from "./components/Perfil";
 import Experiencia from "./components/Experiencia";
 import Educacion from "./components/Educacion";
 import StackTecnologias from "./components/StackTecnologias";
-import CabeceraCV from "./components/CabeceraCV"; // ← NUEVO
+import CabeceraCV from "./components/CabeceraCV";
+import ToggleHabilidades from "./components/ToggleHabilidades"; // ← NUEVO
 
 function App() {
   const [count, setCount] = useState(0);
-
-  // --------------------------------------
-  // DATOS DEL CV (PROPUESTOS PARA EV07)
-  // --------------------------------------
 
   const datosPersonales = {
     nombre: "Zack",
@@ -77,7 +74,6 @@ function App() {
         </a>
       </div>
       <h1>Mi Primer CV con React</h1>
-
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -86,29 +82,19 @@ function App() {
           Edita <code>src/App.jsx</code> y guarda para probar HMR.
         </p>
       </div>
-
       <p className="read-the-docs">Haz clic en los logos para aprender más</p>
-
-      {/* -------------------------------------- */}
-      {/*        SECCIÓN DEL CV CON PROPS         */}
-      {/* -------------------------------------- */}
-
+      {/* SECCIÓN CV */}
       <CabeceraCV
         nombre={datosPersonales.nombre}
         cargo={datosPersonales.cargo}
         ciudad={datosPersonales.ciudad}
         contacto={datosPersonales.contacto}
       />
-
       <Perfil resumen={resumenPerfil} />
-
       <Experiencia experiencias={experiencias} />
-
       <Educacion estudios={estudios} />
-
       <StackTecnologias tecnologias={tecnologias} />
-
-      {/* -------------------------------------- */}
+      <ToggleHabilidades /> {/* ← ESTA ES LA ÚNICA LÍNEA QUE FALTABA */}
     </>
   );
 }
