@@ -42,3 +42,25 @@ npm run dev
 Abre el navegador y ve a la URL indicada por Vite, normalmente:
 
 http://localhost:5173/
+
+# Actividad 6
+
+“Actividad: Crear un nuevo componente llamado StackTecnologias en React, importarlo en App.jsx e integrarlo como una sección adicional del CV, mostrando las tecnologías que manejo.”
+
+# Actividad 7 — Actualización
+
+✔️ Cambios realizados en esta actividad
+
+En la Actividad 7 se realizaron los siguientes pasos:
+
+Se creó el componente CabeceraCV y se integró en App.jsx.
+
+Se agregaron props dinámicas para mostrar nombre, cargo, ciudad y contacto.
+
+Se validó el funcionamiento del componente desde App.jsx.
+
+Se creó el componente Perfil, ahora recibiendo información mediante props.
+
+Se reorganizó la estructura del componente para cumplir con las instrucciones de la guía.
+
+Se añadieron evidencias y commits siguiendo las convenciones solicitadas.
