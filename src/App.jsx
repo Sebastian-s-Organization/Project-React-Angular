@@ -9,10 +9,29 @@ import Experiencia from "./components/Experiencia";
 import Educacion from "./components/Educacion";
 import StackTecnologias from "./components/StackTecnologias";
 import CabeceraCV from "./components/CabeceraCV";
-import ToggleHabilidades from "./components/ToggleHabilidades"; // ← NUEVO
+import ToggleHabilidades from "./components/ToggleHabilidades";
+
+// Importante para el paso 7
+import { tecnologiasIniciales } from "./data/cvData";
+
+// Importar el formulario (nuevo)
+import FormularioTecnologia from "./components/FormularioTecnologia";
 
 function App() {
   const [count, setCount] = useState(0);
+
+  // Estado dinámico de tecnologías (Paso 7)
+  const [tecnologias, setTecnologias] = useState(tecnologiasIniciales);
+
+  // Función para agregar tecnologías (obligatoria en el paso 7)
+  const agregarTecnologia = (nuevaTec) => {
+    setTecnologias((prev) => [...prev, nuevaTec]);
+  };
+
+  // Paso 8: eliminar la última tecnología
+  const eliminarUltimaTecnologia = () => {
+    setTecnologias((prev) => prev.slice(0, -1));
+  };
 
   const datosPersonales = {
     nombre: "Zack",
@@ -52,17 +71,6 @@ function App() {
     },
   ];
 
-  const tecnologias = [
-    "JavaScript",
-    "React",
-    "Node.js",
-    "HTML",
-    "CSS",
-    "Git",
-    "GitHub",
-    "Tailwind",
-  ];
-
   return (
     <>
       <div>
@@ -73,7 +81,9 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
+
       <h1>Mi Primer CV con React</h1>
+
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -82,7 +92,9 @@ function App() {
           Edita <code>src/App.jsx</code> y guarda para probar HMR.
         </p>
       </div>
+
       <p className="read-the-docs">Haz clic en los logos para aprender más</p>
+
       {/* SECCIÓN CV */}
       <CabeceraCV
         nombre={datosPersonales.nombre}
@@ -90,11 +102,25 @@ function App() {
         ciudad={datosPersonales.ciudad}
         contacto={datosPersonales.contacto}
       />
+
       <Perfil resumen={resumenPerfil} />
+
       <Experiencia experiencias={experiencias} />
+
       <Educacion estudios={estudios} />
+
+      {/* Usar el estado dinámico */}
       <StackTecnologias tecnologias={tecnologias} />
-      <ToggleHabilidades /> {/* ← ESTA ES LA ÚNICA LÍNEA QUE FALTABA */}
+
+      {/* Formulario para agregar tecnologías */}
+      <FormularioTecnologia onAgregar={agregarTecnologia} />
+
+      {/* Botón para eliminar la última tecnología */}
+      <button onClick={eliminarUltimaTecnologia}>
+        Eliminar última tecnología
+      </button>
+
+      <ToggleHabilidades />
     </>
   );
 }
