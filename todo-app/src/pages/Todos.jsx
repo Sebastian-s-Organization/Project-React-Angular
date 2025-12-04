@@ -44,6 +44,19 @@ function Todos() {
         {todos.map((item) => (
           <li key={item.id}>
             {item.title} {item.completed ? "✔️" : "❌"}
+            <button
+              onClick={() => {
+                setTodos(
+                  todos.map((todo) =>
+                    todo.id === item.id
+                      ? { ...todo, completed: !todo.completed }
+                      : todo
+                  )
+                );
+              }}
+            >
+              Cambiar estado
+            </button>
           </li>
         ))}
       </ul>
