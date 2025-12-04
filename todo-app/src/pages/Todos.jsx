@@ -4,7 +4,7 @@ function Todos() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // ← NUEVO: estado para errores
+  const [error, setError] = useState(null); // Estado para errores
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -45,7 +45,11 @@ function Todos() {
     setNewTodo("");
   };
 
-  // ← Mensaje de carga (PASO 6)
+  // Función para eliminar un TODO
+  const handleDelete = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
   if (loading) {
     return <p>Cargando tareas...</p>;
   }
@@ -64,7 +68,6 @@ function Todos() {
         <button type="submit">Agregar</button>
       </form>
 
-      {/* ← Mostrar error si existe (PASO 7) */}
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       <ul>
@@ -83,6 +86,12 @@ function Todos() {
               }}
             >
               Cambiar estado
+            </button>
+            <button
+              style={{ marginLeft: "10px", color: "red" }}
+              onClick={() => handleDelete(item.id)}
+            >
+              Eliminar
             </button>
           </li>
         ))}
