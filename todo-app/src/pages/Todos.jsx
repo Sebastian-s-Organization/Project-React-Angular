@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import TodoList from "../components/TodoList";
 
 function Todos() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // Estado para errores
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -41,11 +42,17 @@ function Todos() {
     }
 
     console.log("Nuevo TODO capturado:", newTodo);
-
     setNewTodo("");
   };
 
-  // Función para eliminar un TODO
+  const handleToggle = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  };
+
   const handleDelete = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
@@ -70,32 +77,7 @@ function Todos() {
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      <ul>
-        {todos.map((item) => (
-          <li key={item.id}>
-            {item.title} {item.completed ? "✔️" : "❌"}
-            <button
-              onClick={() => {
-                setTodos(
-                  todos.map((todo) =>
-                    todo.id === item.id
-                      ? { ...todo, completed: !todo.completed }
-                      : todo
-                  )
-                );
-              }}
-            >
-              Cambiar estado
-            </button>
-            <button
-              style={{ marginLeft: "10px", color: "red" }}
-              onClick={() => handleDelete(item.id)}
-            >
-              Eliminar
-            </button>
-          </li>
-        ))}
-      </ul>
+      <TodoList todos={todos} onToggle={handleToggle} onDelete={handleDelete} />
     </div>
   );
 }
