@@ -3,20 +3,33 @@ import { useEffect, useState } from "react";
 function Todos() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
-  const [loading, setLoading] = useState(true); // ← Paso 6 (estado de carga)
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); // ← NUEVO: estado para errores
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos")
-      .then((res) => res.json())
-      .then((data) => {
+    const fetchTodos = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+
+        if (!res.ok) {
+          throw new Error("Error al obtener los datos desde la API");
+        }
+
+        const data = await res.json();
         console.log("Datos recibidos desde API:", data);
         setTodos(data);
-        setLoading(false); // ← Cuando llegan los datos, termina carga
-      })
-      .catch((error) => {
-        console.error("Error cargando tareas:", error);
-        setLoading(false); // ← Si falla, igual dejamos de cargar
-      });
+      } catch (err) {
+        console.error("Error en la petición:", err);
+        setError("Ocurrió un error al cargar los TODOs");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTodos();
   }, []);
 
   const handleSubmit = (e) => {
@@ -29,7 +42,7 @@ function Todos() {
 
     console.log("Nuevo TODO capturado:", newTodo);
 
-    setNewTodo(""); // limpiar input
+    setNewTodo("");
   };
 
   // ← Mensaje de carga (PASO 6)
@@ -50,6 +63,9 @@ function Todos() {
         />
         <button type="submit">Agregar</button>
       </form>
+
+      {/* ← Mostrar error si existe (PASO 7) */}
+      {error && <p style={{ color: "red" }}>{error}</p>}
 
       <ul>
         {todos.map((item) => (
