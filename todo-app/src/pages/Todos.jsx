@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 function Todos() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
+  const [loading, setLoading] = useState(true); // ← Paso 6 (estado de carga)
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/todos")
@@ -10,6 +11,11 @@ function Todos() {
       .then((data) => {
         console.log("Datos recibidos desde API:", data);
         setTodos(data);
+        setLoading(false); // ← Cuando llegan los datos, termina carga
+      })
+      .catch((error) => {
+        console.error("Error cargando tareas:", error);
+        setLoading(false); // ← Si falla, igual dejamos de cargar
       });
   }, []);
 
@@ -25,6 +31,11 @@ function Todos() {
 
     setNewTodo(""); // limpiar input
   };
+
+  // ← Mensaje de carga (PASO 6)
+  if (loading) {
+    return <p>Cargando tareas...</p>;
+  }
 
   return (
     <div>
