@@ -1,22 +1,28 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function Todos() {
+  const [todos, setTodos] = useState([]);
+
   useEffect(() => {
-    // Fetch inicial según la guía
     fetch("https://jsonplaceholder.typicode.com/todos")
       .then((res) => res.json())
       .then((data) => {
         console.log("Datos recibidos desde API:", data);
-      })
-      .catch((err) => {
-        console.error("Error al obtener los datos:", err);
+        setTodos(data);
       });
   }, []);
 
   return (
     <div>
-      <h1>Página Todos</h1>
-      <p>Realizando fetch inicial... revisa la consola</p>
+      <h1>Página de Todos</h1>
+
+      <ul>
+        {todos.map((item) => (
+          <li key={item.id}>
+            {item.title} {item.completed ? "✔️" : "❌"}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
