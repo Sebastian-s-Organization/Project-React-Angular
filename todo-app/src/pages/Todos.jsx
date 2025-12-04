@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import TodoList from "../components/TodoList";
+import TodoFilters from "../components/TodoFilters"; // importado según paso 12
 
 function Todos() {
   const [todos, setTodos] = useState([]);
@@ -76,6 +77,9 @@ function Todos() {
       </form>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
+
+      {/* Placeholder para filtros */}
+      <TodoFilters />
 
       <TodoList todos={todos} onToggle={handleToggle} onDelete={handleDelete} />
     </div>
